@@ -214,48 +214,39 @@
       text-align: center;
     }
 
-    .screenshots-row-label {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--sub);
-      margin-bottom: 16px;
-    }
-
-    .screenshots-row {
-      display: flex;
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 16px;
-      justify-content: center;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
+      margin-top: 40px;
     }
 
-    .screenshot-item {
+    .style-chip {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px 12px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      font-weight: 600;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
+      gap: 8px;
+      transition: transform 0.15s;
     }
 
-    .screenshot-item img {
-      width: 160px;
-      border-radius: 22px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-      display: block;
-    }
+    .style-chip:hover { transform: translateY(-2px); }
 
-    .screenshot-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--sub);
-    }
+    .style-chip .icon { font-size: 26px; }
 
-    @media (max-width: 720px) {
-      .screenshot-item img { width: 130px; }
-      .screenshots-row { gap: 12px; }
+    .style-chip.premium { position: relative; }
+
+    .style-chip.premium::after {
+      content: "✦";
+      position: absolute;
+      top: 8px; right: 10px;
+      font-size: 10px;
+      color: #FFB800;
     }
 
     .styles-note {
@@ -500,8 +491,8 @@
       Sudoku Odyssey
     </div>
     <div class="nav-links">
-      <a href="#features">Features</a>
       <a href="#styles">Styles</a>
+      <a href="#features">Features</a>
       <a href="#daily">Daily</a>
     </div>
     <a class="nav-cta" href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361" target="_blank" rel="noopener">Download</a>
@@ -534,49 +525,28 @@
 <section id="styles" style="text-align: center;">
   <p class="section-eyebrow">Board styles</p>
   <h2>Your puzzle, your world.</h2>
-  <p class="section-sub" style="margin: 0 auto 48px;">From sleek classics to immersive emoji themes — 40+ styles, each hand-crafted.</p>
+  <p class="section-sub" style="margin: 0 auto 0;">From sleek minimal to immersive themes, there's a style for every mood.</p>
 
-  <div class="screenshots-row-label">Classic styles</div>
-  <div class="screenshots-row">
-    <div class="screenshot-item">
-      <img src="screenshot-space.png" alt="Space board style" />
-      <span class="screenshot-name">Space</span>
-    </div>
-    <div class="screenshot-item">
-      <img src="screenshot-chalkboard.png" alt="Chalkboard board style" />
-      <span class="screenshot-name">Chalkboard</span>
-    </div>
-    <div class="screenshot-item">
-      <img src="screenshot-notebook.png" alt="Notebook board style" />
-      <span class="screenshot-name">Notebook</span>
-    </div>
-    <div class="screenshot-item">
-      <img src="screenshot-retro.png" alt="Retro board style" />
-      <span class="screenshot-name">Retro</span>
-    </div>
+  <div class="styles-grid">
+    <div class="style-chip"><span class="icon">⬜</span>Classic</div>
+    <div class="style-chip"><span class="icon">🟦</span>Blueprint</div>
+    <div class="style-chip"><span class="icon">🌿</span>Chalkboard</div>
+    <div class="style-chip"><span class="icon">📓</span>Notebook</div>
+    <div class="style-chip premium"><span class="icon">🌅</span>Western</div>
+    <div class="style-chip premium"><span class="icon">🚀</span>Space</div>
+    <div class="style-chip premium"><span class="icon">💻</span>Matrix</div>
+    <div class="style-chip premium"><span class="icon">𓂀</span>Egyptian</div>
+    <div class="style-chip premium"><span class="icon">🌊</span>Ocean</div>
+    <div class="style-chip premium"><span class="icon">🌸</span>Sakura</div>
+    <div class="style-chip premium"><span class="icon">🍂</span>Autumn</div>
+    <div class="style-chip premium"><span class="icon">❄️</span>Arctic</div>
+    <div class="style-chip premium"><span class="icon">🌙</span>Midnight</div>
+    <div class="style-chip premium"><span class="icon">🔥</span>Lava</div>
+    <div class="style-chip premium"><span class="icon">🌿</span>Forest</div>
+    <div class="style-chip premium"><span class="icon">✨</span>+20 more</div>
   </div>
 
-  <div class="screenshots-row-label" style="margin-top: 40px;">Emoji styles</div>
-  <div class="screenshots-row">
-    <div class="screenshot-item">
-      <img src="screenshot-jungle.png" alt="Jungle emoji style" />
-      <span class="screenshot-name">Jungle</span>
-    </div>
-    <div class="screenshot-item">
-      <img src="screenshot-ocean.png" alt="Ocean emoji style" />
-      <span class="screenshot-name">Ocean</span>
-    </div>
-    <div class="screenshot-item">
-      <img src="screenshot-fantasy.png" alt="Fantasy emoji style" />
-      <span class="screenshot-name">Fantasy</span>
-    </div>
-    <div class="screenshot-item">
-      <img src="screenshot-cinema.png" alt="Cinema emoji style" />
-      <span class="screenshot-name">Cinema</span>
-    </div>
-  </div>
-
-  <p class="styles-note" style="margin-top: 40px;"><span>✦</span> Premium styles — unlock all with one purchase, no subscription.</p>
+  <p class="styles-note"><span>✦</span> Premium styles — unlock all with one purchase, no subscription.</p>
 </section>
 
 <!-- FEATURES -->
