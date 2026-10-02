@@ -55,14 +55,5 @@ For new image files, also copy them: `cp ~/Downloads/screenshot-*.png ~/Document
 
 GitHub credentials: Ezra uses a Personal Access Token (classic, repo scope) pasted as password when Terminal prompts.
 
-## Pending Tasks
-- [ ] Add more screenshots (goal: 6 per row in styles section)
-- [ ] Update App Store Connect: Support URL → https://sudokuodyssey.com/support.html
-- [ ] Update App Store Connect: Privacy URL → https://sudokuodyssey.com/privacy.html
-- [ ] Update App Store Connect: Marketing URL → https://sudokuodyssey.com
-- [ ] Wire in-app support link to https://sudokuodyssey.com/support.html
-- [ ] Next app build: bump version, answer encryption question, rename listing
-- [ ] Apple Ads: wait for account approval, activate ad group, add keywords
-
 ## Apple CDN Note
 `toolbox.marketingtools.apple.com` badge URLs have referrer restrictions — they show as placeholders in local preview but work correctly on the live sudokuodyssey.com domain. Do not replace with hand-crafted SVGs.
