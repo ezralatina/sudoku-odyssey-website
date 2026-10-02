@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support – Sudoku Odyssey</title>
+  <meta name="description" content="Get help with Sudoku Odyssey. Frequently asked questions and contact information." />
+  <link rel="icon" type="image/png" href="icon.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #007AFF;
+      --blue-dk: #0055B3;
+      --bg:      #F2F2F7;
+      --card:    #FFFFFF;
+      --text:    #1C1C1E;
+      --sub:     #6E6E73;
+      --radius:  16px;
+      --shadow:  0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', 'SF Pro Display', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      background: rgba(242,242,247,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 28px; height: 28px;
+      border-radius: 7px;
+    }
+
+    /* ── Hero ── */
+    .page-hero {
+      background: linear-gradient(160deg, #EAF3FF 0%, #F2F2F7 100%);
+      text-align: center;
+      padding: 64px 24px 56px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .page-hero p {
+      font-size: 17px;
+      color: var(--sub);
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: var(--blue);
+      border-radius: var(--radius);
+      padding: 28px 28px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .contact-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .contact-btn {
+      background: #fff;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 12px 24px;
+      border-radius: 20px;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+      text-decoration: none;
+    }
+
+    .contact-btn:hover { opacity: 0.9; text-decoration: none; }
+
+    /* FAQ */
+    .faq-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    details {
+      background: var(--card);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+
+    summary {
+      padding: 18px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--blue);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after { transform: rotate(45deg); }
+
+    .faq-body {
+      padding: 0 20px 20px;
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.65;
+    }
+
+    .faq-body p + p { margin-top: 10px; }
+
+    .faq-section { margin-bottom: 48px; }
+
+    /* App Store link */
+    .app-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--text);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 8px;
+      text-decoration: none;
+    }
+
+    .app-link:hover { opacity: 0.85; text-decoration: none; }
+
+    /* Footer */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+
+    footer a { color: rgba(255,255,255,0.6); }
+    footer a:hover { color: #fff; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2c/31/d9/2c31d98f-3fe1-a840-18ef-c5694d6a9811/AppIcon-0-0-1x_U007epad-0-1-0-GLES2_U002c0-85-220.png/540x540bb.jpg" alt="" />
+      Sudoku Odyssey
+    </a>
+    <a href="index.html" style="font-size:14px; font-weight:500; color:var(--blue);">← Back</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Support</h1>
+  <p>We're here to help. Answers to common questions below.</p>
+</div>
+
+<div class="content">
+
+  <!-- Contact card -->
+  <div class="contact-card">
+    <div>
+      <h2>Still need help?</h2>
+      <p>Send us an email and we'll get back to you within 24 hours.</p>
+    </div>
+    <a class="contact-btn" href="mailto:sudokuodyssey@gmail.com">Email Us</a>
+  </div>
+
+  <!-- General FAQ -->
+  <div class="faq-section">
+    <h2>General</h2>
+
+    <details>
+      <summary>Is Sudoku Odyssey free?</summary>
+      <div class="faq-body">
+        <p>Yes! Sudoku Odyssey is free to download with no mandatory payments. You get full access to puzzles, the daily challenge, and a selection of free board styles right away.</p>
+        <p>A one-time in-app purchase ($4.99) unlocks all 40+ premium board styles permanently — no subscription required.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Are there really no ads?</summary>
+      <div class="faq-body">
+        <p>Absolutely none. Sudoku Odyssey has no banner ads, interstitials, rewarded ads, or any other form of advertising. The app is ad-free for every user, forever.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What devices are supported?</summary>
+      <div class="faq-body">
+        <p>Sudoku Odyssey is a native iOS app for iPhone and iPad running iOS 16 or later. It's optimised for all modern iPhone and iPad screen sizes.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Does the app require an internet connection?</summary>
+      <div class="faq-body">
+        <p>No internet connection is required to play puzzles. Puzzles are generated on-device using a seeded algorithm. An internet connection is only needed to make a purchase or restore purchases.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- Puzzles FAQ -->
+  <div class="faq-section">
+    <h2>Puzzles</h2>
+
+    <details>
+      <summary>How does the Daily Challenge work?</summary>
+      <div class="faq-body">
+        <p>Every day at midnight a new puzzle is generated using today's date as a seed. Everyone who plays on the same day gets the exact same puzzle — so you can compare times with friends.</p>
+        <p>Your progress on the daily challenge is saved automatically so you can pick up where you left off.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How are puzzles generated? Are they truly unique?</summary>
+      <div class="faq-body">
+        <p>Puzzles are generated algorithmically on-device using a seeded pseudorandom number generator. The seed is derived from the date (for daily challenges) or a random value (for regular games). Each puzzle has exactly one solution.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I undo a move?</summary>
+      <div class="faq-body">
+        <p>Yes — tap the undo button (↩) in the toolbar to step back one move at a time.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What does "Show Mistakes" do?</summary>
+      <div class="faq-body">
+        <p>When enabled in Settings, any number you enter that conflicts with the puzzle's solution is highlighted in red as you type. Turn it off for a more traditional, challenge-based experience.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What difficulty levels are available?</summary>
+      <div class="faq-body">
+        <p>There are four difficulties: <strong>Easy</strong> (many given clues), <strong>Medium</strong>, <strong>Hard</strong>, and <strong>Expert</strong> (fewest clues, requires advanced techniques). Each is carefully tuned for a fair but challenging solve.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- Board Styles FAQ -->
+  <div class="faq-section">
+    <h2>Board Styles</h2>
+
+    <details>
+      <summary>How do I unlock more board styles?</summary>
+      <div class="faq-body">
+        <p>Tap the palette icon in the top bar during a game (or from the home screen) to open the style picker. You'll see free styles available immediately, and premium styles locked behind a single one-time purchase.</p>
+        <p>Tap <strong>Unlock All Boards</strong> to purchase — you'll never be charged again.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I bought the unlock. How do I restore on a new device?</summary>
+      <div class="faq-body">
+        <p>Open Sudoku Odyssey, go to the style picker, and tap <strong>Restore Purchases</strong>. Make sure you're signed into the same Apple ID you used when you originally purchased. The unlock will be restored at no additional charge.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Can I use a board style for the Daily Challenge?</summary>
+      <div class="faq-body">
+        <p>Yes! Your currently selected board style applies to every puzzle, including the daily challenge. Switch styles any time from the style picker.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- Purchases FAQ -->
+  <div class="faq-section">
+    <h2>Purchases &amp; Billing</h2>
+
+    <details>
+      <summary>How much does the "Unlock All Boards" purchase cost?</summary>
+      <div class="faq-body">
+        <p>The purchase is <strong>$4.99 USD</strong> (or equivalent in your local currency). It's a one-time payment — no subscription, no recurring charges, no hidden fees.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>I was charged but styles are still locked. What do I do?</summary>
+      <div class="faq-body">
+        <p>First, try tapping <strong>Restore Purchases</strong> in the style picker. If that doesn't resolve it, please email us at <a href="mailto:sudokuodyssey@gmail.com">sudokuodyssey@gmail.com</a> with your Apple order number (found in your App Store receipt email) and we'll sort it out.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How do I request a refund?</summary>
+      <div class="faq-body">
+        <p>All purchases are processed by Apple. To request a refund, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a> and sign in with your Apple ID. Apple handles all refund decisions per their <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener">App Store Terms</a>.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- Privacy FAQ -->
+  <div class="faq-section">
+    <h2>Privacy &amp; Data</h2>
+
+    <details>
+      <summary>What data does Sudoku Odyssey collect?</summary>
+      <div class="faq-body">
+        <p>Sudoku Odyssey collects minimal, anonymised analytics data (e.g. app launches, puzzle completions) to help us improve the app. We do not collect your name, email address, or any personally identifying information.</p>
+        <p>See our full <a href="privacy.html">Privacy Policy</a> for details.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Do you share my data with third parties?</summary>
+      <div class="faq-body">
+        <p>We do not sell your data. Analytics data is processed by Firebase (Google) under their privacy terms. Purchase transactions are handled entirely by Apple. We have no access to your payment information.</p>
+      </div>
+    </details>
+  </div>
+
+  <div style="text-align:center; padding-top:8px;">
+    <p style="font-size:15px; color:var(--sub); margin-bottom:16px;">Enjoying Sudoku Odyssey? A rating on the App Store means the world to us. 🙏</p>
+    <a class="app-link" href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361?action=write-review" target="_blank" rel="noopener">⭐ Rate on the App Store</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:sudokuodyssey@gmail.com">Contact</a>
+  </div>
+  <p>© 2024–2026 Sudoku Odyssey.</p>
+</footer>
+
+</body>
+</html>

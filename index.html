@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sudoku Odyssey – Classic puzzle, endless styles</title>
+  <meta name="description" content="Sudoku Odyssey brings the classic number puzzle to life with 40+ beautiful board styles. No ads, no subscriptions. Available on iPhone and iPad." />
+  <link rel="icon" type="image/png" href="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2c/31/d9/2c31d98f-3fe1-a840-18ef-c5694d6a9811/AppIcon-0-0-1x_U007epad-0-1-0-GLES2_U002c0-85-220.png/540x540bb.jpg" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sudoku Odyssey" />
+  <meta property="og:description" content="Classic puzzle, endless styles. 40+ board themes, no ads." />
+  <meta property="og:image" content="https://sudokuodyssey.com/icon.png" />
+  <meta property="og:url" content="https://sudokuodyssey.com" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #007AFF;
+      --blue-dk: #0055B3;
+      --bg:      #F2F2F7;
+      --card:    #FFFFFF;
+      --text:    #1C1C1E;
+      --sub:     #6E6E73;
+      --radius:  16px;
+      --shadow:  0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', 'SF Pro Display', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(242,242,247,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--sub);
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-cta {
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 20px;
+      transition: background 0.15s;
+    }
+
+    .nav-cta:hover { background: var(--blue-dk); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      background: linear-gradient(160deg, #EAF3FF 0%, #F2F2F7 50%, #F2F2F7 100%);
+    }
+
+    .hero-logo {
+      width: min(420px, 80vw);
+      margin-bottom: 16px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(18px, 3vw, 22px);
+      color: var(--sub);
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .app-store-badge {
+      display: inline-block;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+
+    .app-store-badge:hover { transform: scale(1.04); opacity: 0.9; }
+
+    .app-store-badge img {
+      height: 50px;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: var(--sub);
+    }
+
+    /* ── Section Shared ── */
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-eyebrow {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--sub);
+      max-width: 540px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Features ── */
+    #features { background: var(--card); border-radius: var(--radius); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.55;
+    }
+
+    /* ── Styles Showcase ── */
+    #styles {
+      text-align: center;
+    }
+
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .style-chip {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px 12px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s;
+    }
+
+    .style-chip:hover { transform: translateY(-2px); }
+
+    .style-chip .icon { font-size: 26px; }
+
+    .style-chip.premium { position: relative; }
+
+    .style-chip.premium::after {
+      content: "✦";
+      position: absolute;
+      top: 8px; right: 10px;
+      font-size: 10px;
+      color: #FFB800;
+    }
+
+    .styles-note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--sub);
+    }
+
+    .styles-note span { color: #FFB800; }
+
+    /* ── Daily Challenge ── */
+    #daily {
+      text-align: center;
+    }
+
+    .daily-wrapper {
+      background: var(--card);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 32px 24px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .daily-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .daily-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .daily-date {
+      font-size: 13px;
+      color: var(--sub);
+      background: var(--bg);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* Sudoku grid */
+    #sudoku-grid {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 2px;
+      background: #1C1C1E;
+      border: 3px solid #1C1C1E;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+
+    .s-cell {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(13px, 3vw, 19px);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.1s;
+      position: relative;
+      aspect-ratio: 1;
+    }
+
+    .s-cell.given {
+      color: var(--text);
+      font-weight: 700;
+      cursor: default;
+    }
+
+    .s-cell.editable { color: var(--blue); }
+
+    .s-cell.selected { background: #BDD8FF; }
+
+    .s-cell.same-num { background: #DDEEFF; }
+
+    .s-cell.error { color: #FF3B30; }
+
+    /* Thick box borders */
+    .s-cell.border-right { border-right: 2.5px solid #1C1C1E; }
+    .s-cell.border-bottom { border-bottom: 2.5px solid #1C1C1E; }
+
+    /* Number pad */
+    .numpad {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .num-btn {
+      background: var(--bg);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 4px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .num-btn:hover { background: #D1D1D6; }
+    .num-btn:active { background: var(--blue); color: #fff; }
+
+    .daily-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-action {
+      background: var(--bg);
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .btn-action:hover { background: #D1D1D6; }
+
+    .btn-action.primary {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .btn-action.primary:hover { background: var(--blue-dk); }
+
+    .daily-complete {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 0 4px;
+    }
+
+    .daily-complete.show { display: flex; }
+
+    .complete-emoji { font-size: 48px; }
+
+    .complete-text {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .complete-sub { font-size: 14px; color: var(--sub); }
+
+    /* ── Screenshots ── */
+    #screenshots {
+      text-align: center;
+    }
+
+    .screenshots-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 8px 4px 20px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .screenshots-scroll::-webkit-scrollbar { display: none; }
+
+    .screenshot-frame {
+      flex: 0 0 auto;
+      width: 200px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--blue) 0%, #005EC4 100%);
+      text-align: center;
+      padding: 80px 24px;
+      color: #fff;
+    }
+
+    .cta-section h2 {
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.8);
+      font-size: 17px;
+      margin-bottom: 36px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+    }
+
+    footer a { color: rgba(255,255,255,0.6); }
+    footer a:hover { color: #fff; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .daily-wrapper { padding: 20px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2c/31/d9/2c31d98f-3fe1-a840-18ef-c5694d6a9811/AppIcon-0-0-1x_U007epad-0-1-0-GLES2_U002c0-85-220.png/540x540bb.jpg" alt="Sudoku Odyssey icon" />
+      Sudoku Odyssey
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#styles">Styles</a>
+      <a href="#daily">Daily</a>
+    </div>
+    <a class="nav-cta" href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361" target="_blank" rel="noopener">Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <a href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361?itscg=30200&itsct=apps_box_artwork&mttnsubad=6791718361" style="position:relative;width:120px;height:120px;overflow:hidden;display:inline-block;margin-bottom:32px;border-radius:28px;box-shadow:0 8px 40px rgba(0,122,255,0.28);
+    --app-icon-mask:url('data:image/svg+xml,%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xml%3Aspace%3D%22preserve%22%20viewBox%3D%220%200%20230.5%20230.5%22%3E%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20stroke-linejoin%3D%22round%22%20stroke-miterlimit%3D%221.4%22%20clip-rule%3D%22evenodd%22%20d%3D%22M158.2%20230H64.1a320%20320%200%200%201-7-.1c-5%200-10-.5-15-1.3a50.8%2050.8%200%200%201-14.4-4.8%2048.2%2048.2%200%200%201-21-21%2050.9%2050.9%200%200%201-4.8-14.4%20100.7%20100.7%200%200%201-1.3-15v-7l-.1-8.2V64.1a320%20320%200%200%201%20.1-7c0-5%20.5-10%201.3-15a50.7%2050.7%200%200%201%204.8-14.4%2048.2%2048.2%200%200%201%2021-21%2051%2051%200%200%201%2014.4-4.8c5-.8%2010-1.2%2015-1.3a320%20320%200%200%201%207%200l8.2-.1h94.1a320%20320%200%200%201%207%20.1c5%200%2010%20.5%2015%201.3a52%2052%200%200%201%2014.4%204.8%2048.2%2048.2%200%200%201%2021%2021%2050.9%2050.9%200%200%201%204.8%2014.4c.8%205%201.2%2010%201.3%2015a320%20320%200%200%201%20.1%207v102.3l-.1%207c0%205-.5%2010-1.3%2015a50.7%2050.7%200%200%201-4.8%2014.4%2048.2%2048.2%200%200%201-21%2021%2050.8%2050.8%200%200%201-14.4%204.8c-5%20.8-10%201.2-15%201.3a320%20320%200%200%201-7%200l-8.2.1z%22%2F%3E%0A%3C%2Fsvg%3E%0A');">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2c/31/d9/2c31d98f-3fe1-a840-18ef-c5694d6a9811/AppIcon-0-0-1x_U007epad-0-1-0-GLES2_U002c0-85-220.png/540x540bb.jpg" alt="Sudoku Odyssey" style="width:100%;height:100%;object-fit:contain;mask-image:var(--app-icon-mask);-webkit-mask-image:var(--app-icon-mask);" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230.5 230.5" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;box-sizing:border-box;">
+      <path fill="none" stroke="#000" stroke-linejoin="round" stroke-miterlimit="1.4" stroke-opacity=".1" stroke-width="1" d="M158.2 230H64.1a320 320 0 0 1-7-.1c-5 0-10-.5-15-1.3a50.8 50.8 0 0 1-14.4-4.8 48.2 48.2 0 0 1-21-21 50.9 50.9 0 0 1-4.8-14.4 100.7 100.7 0 0 1-1.3-15v-7l-.1-8.2V64.1a320 320 0 0 1 .1-7c0-5 .5-10 1.3-15a50.7 50.7 0 0 1 4.8-14.4 48.2 48.2 0 0 1 21-21 51 51 0 0 1 14.4-4.8c5-.8 10-1.2 15-1.3a320 320 0 0 1 7 0l8.2-.1h94.1a320 320 0 0 1 7 .1c5 0 10 .5 15 1.3a52 52 0 0 1 14.4 4.8 48.2 48.2 0 0 1 21 21 50.9 50.9 0 0 1 4.8 14.4c.8 5 1.2 10 1.3 15a320 320 0 0 1 .1 7v102.3l-.1 7c0 5-.5 10-1.3 15a50.7 50.7 0 0 1-4.8 14.4 48.2 48.2 0 0 1-21 21 50.8 50.8 0 0 1-14.4 4.8c-5 .8-10 1.2-15 1.3a320 320 0 0 1-7 0l-8.2.1z" clip-rule="evenodd" vector-effect="non-scaling-stroke"/>
+    </svg>
+  </a>
+
+  <img class="hero-logo" src="logo.png" alt="Sudoku Odyssey" />
+
+  <p class="hero-tagline">Classic puzzle, endless styles.</p>
+
+  <div class="hero-actions">
+    <a href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361?itscg=30200&itsct=apps_box_badge&mttnsubad=6791718361" style="display:inline-block;">
+    <img src="badge-black.svg" alt="Download on the App Store" style="width:246px;height:82px;vertical-align:middle;object-fit:contain;" />
+  </a>
+    <span class="hero-sub">Free · iPhone &amp; iPad · No ads, ever.</span>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div style="background: var(--card); padding: 0 0 1px;">
+  <section id="features" style="background: var(--card); border-radius: 0;">
+    <p class="section-eyebrow">Why you'll love it</p>
+    <h2>Sudoku the way it should be.</h2>
+    <p class="section-sub">No subscriptions. No pop-ups. Just clean, satisfying puzzles with a look that fits your mood.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h3>40+ Board Styles</h3>
+        <p>Classic, Chalkboard, Western, Space, Matrix, Egyptian, and dozens more. Each one hand-crafted.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <h3>Daily Challenge</h3>
+        <p>A fresh puzzle every day — same seed worldwide, so you and a friend always solve the same board.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🚫</span>
+        <h3>Zero Ads</h3>
+        <p>Not one banner, not one interstitial. Unlock all styles with a single one-time purchase.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Four Difficulties</h3>
+        <p>Easy, Medium, Hard, and Expert. Each level is thoughtfully tuned for a satisfying solve.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✅</span>
+        <h3>Real-time Hints</h3>
+        <p>Optional mistake highlighting keeps you on track without spoiling the challenge.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📱</span>
+        <h3>iPhone &amp; iPad</h3>
+        <p>Native SwiftUI app, optimised for every screen size. Feels right at home on iOS.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- STYLES SHOWCASE -->
+<section id="styles" style="text-align: center;">
+  <p class="section-eyebrow">Board styles</p>
+  <h2>Your puzzle, your world.</h2>
+  <p class="section-sub" style="margin: 0 auto 0;">From sleek minimal to immersive themes, there's a style for every mood.</p>
+
+  <div class="styles-grid">
+    <div class="style-chip"><span class="icon">⬜</span>Classic</div>
+    <div class="style-chip"><span class="icon">🟦</span>Blueprint</div>
+    <div class="style-chip"><span class="icon">🌿</span>Chalkboard</div>
+    <div class="style-chip"><span class="icon">📓</span>Notebook</div>
+    <div class="style-chip premium"><span class="icon">🌅</span>Western</div>
+    <div class="style-chip premium"><span class="icon">🚀</span>Space</div>
+    <div class="style-chip premium"><span class="icon">💻</span>Matrix</div>
+    <div class="style-chip premium"><span class="icon">𓂀</span>Egyptian</div>
+    <div class="style-chip premium"><span class="icon">🌊</span>Ocean</div>
+    <div class="style-chip premium"><span class="icon">🌸</span>Sakura</div>
+    <div class="style-chip premium"><span class="icon">🍂</span>Autumn</div>
+    <div class="style-chip premium"><span class="icon">❄️</span>Arctic</div>
+    <div class="style-chip premium"><span class="icon">🌙</span>Midnight</div>
+    <div class="style-chip premium"><span class="icon">🔥</span>Lava</div>
+    <div class="style-chip premium"><span class="icon">🌿</span>Forest</div>
+    <div class="style-chip premium"><span class="icon">✨</span>+20 more</div>
+  </div>
+
+  <p class="styles-note"><span>✦</span> Premium styles — unlock all with one purchase, no subscription.</p>
+</section>
+
+<!-- DAILY CHALLENGE -->
+<div style="background: linear-gradient(170deg, #EAF3FF 0%, #F2F2F7 100%); padding: 1px 0;">
+<section id="daily" style="text-align: center;">
+  <p class="section-eyebrow">Try it now</p>
+  <h2>Today's Daily Challenge</h2>
+  <p class="section-sub" style="margin: 0 auto 40px;">Same puzzle for everyone, refreshes at midnight. Tap a cell, then a number.</p>
+
+  <div class="daily-wrapper">
+    <div class="daily-header">
+      <span class="daily-title">Daily Challenge</span>
+      <span class="daily-date" id="daily-date-label"></span>
+    </div>
+
+    <div id="sudoku-grid"></div>
+
+    <div class="numpad" id="numpad">
+      <button class="num-btn" data-n="1">1</button>
+      <button class="num-btn" data-n="2">2</button>
+      <button class="num-btn" data-n="3">3</button>
+      <button class="num-btn" data-n="4">4</button>
+      <button class="num-btn" data-n="5">5</button>
+      <button class="num-btn" data-n="6">6</button>
+      <button class="num-btn" data-n="7">7</button>
+      <button class="num-btn" data-n="8">8</button>
+      <button class="num-btn" data-n="9">9</button>
+    </div>
+
+    <div class="daily-actions">
+      <button class="btn-action" id="btn-erase">⌫ Erase</button>
+      <button class="btn-action" id="btn-check">Check</button>
+      <button class="btn-action primary" id="btn-hint">Hint</button>
+    </div>
+
+    <div class="daily-complete" id="daily-complete">
+      <span class="complete-emoji">🎉</span>
+      <span class="complete-text">Puzzle Complete!</span>
+      <span class="complete-sub">Get the app for daily streaks and 40+ board styles.</span>
+      <a class="btn-action primary" style="margin-top:4px;" href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361" target="_blank" rel="noopener">Download the App</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready for your odyssey?</h2>
+  <p>Download free on the App Store. No ads, no subscription.</p>
+  <a href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361?itscg=30200&itsct=apps_box_badge&mttnsubad=6791718361" style="display:inline-block;">
+    <img src="badge-white.svg" alt="Download on the App Store" style="width:246px;height:82px;vertical-align:middle;object-fit:contain;" />
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:sudokuodyssey@gmail.com">Contact</a>
+  </div>
+  <p>© 2024–2026 Sudoku Odyssey. Made with ♥</p>
+</footer>
+
+<script>
+/* ── Seeded LCG (matches app) ── */
+function lcg(state) {
+  const a = 6364136223846793005n;
+  const c = 1442695040888963407n;
+  const m = 2n ** 64n;
+  return (BigInt(state) * a + c) % m;
+}
+
+function lcgInt(state, max) {
+  state = lcg(state);
+  return { state, value: Number(state % BigInt(max)) };
+}
+
+function seedFromDate(d) {
+  const y = d.getFullYear();
+  const m = d.getMonth() + 1;
+  const day = d.getDate();
+  return BigInt(`${y}${String(m).padStart(2,'0')}${String(day).padStart(2,'0')}`);
+}
+
+/* ── Sudoku generator ── */
+function shuffle(arr, rng) {
+  let state = rng;
+  for (let i = arr.length - 1; i > 0; i--) {
+    const r = lcgInt(state, i + 1);
+    state = r.state;
+    [arr[i], arr[r.value]] = [arr[r.value], arr[i]];
+  }
+  return { arr, state };
+}
+
+function generateSolvedGrid(seed) {
+  // Fill a valid sudoku using backtracking with seeded shuffle
+  const grid = Array(81).fill(0);
+
+  function isValid(g, pos, num) {
+    const row = Math.floor(pos / 9);
+    const col = pos % 9;
+    const boxR = Math.floor(row / 3) * 3;
+    const boxC = Math.floor(col / 3) * 3;
+    for (let i = 0; i < 9; i++) {
+      if (g[row * 9 + i] === num) return false;
+      if (g[i * 9 + col] === num) return false;
+      if (g[(boxR + Math.floor(i/3)) * 9 + (boxC + i%3)] === num) return false;
+    }
+    return true;
+  }
+
+  // Use seed to build number order for each position
+  let state = seed;
+  const nums = [1,2,3,4,5,6,7,8,9];
+
+  function fill(pos) {
+    if (pos === 81) return true;
+    const r = shuffle([...nums], state);
+    state = r.state;
+    const shuffled = r.arr;
+    for (const n of shuffled) {
+      if (isValid(grid, pos, n)) {
+        grid[pos] = n;
+        if (fill(pos + 1)) return true;
+        grid[pos] = 0;
+      }
+    }
+    return false;
+  }
+
+  fill(0);
+  return grid;
+}
+
+function makePuzzle(solved, seed, clues) {
+  // Remove numbers to create puzzle, deterministically
+  const puzzle = [...solved];
+  const positions = Array.from({length: 81}, (_, i) => i);
+  const r = shuffle(positions, seed);
+  const toRemove = 81 - clues;
+  for (let i = 0; i < toRemove; i++) {
+    puzzle[r.arr[i]] = 0;
+  }
+  return puzzle;
+}
+
+/* ── Build grid UI ── */
+const now = new Date();
+const dateSeed = seedFromDate(now);
+
+const dateLabel = document.getElementById('daily-date-label');
+dateLabel.textContent = now.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+
+const solved = generateSolvedGrid(dateSeed);
+// Vary clues by date (36–42 range)
+const clueCount = 36 + Number(dateSeed % 7n);
+const puzzle = makePuzzle(solved, lcg(dateSeed), clueCount);
+
+let selected = -1;
+const userGrid = [...puzzle];
+
+const gridEl = document.getElementById('sudoku-grid');
+
+function renderGrid() {
+  gridEl.innerHTML = '';
+  for (let i = 0; i < 81; i++) {
+    const cell = document.createElement('div');
+    cell.className = 's-cell';
+
+    const row = Math.floor(i / 9);
+    const col = i % 9;
+
+    // Thick box borders
+    if (col === 2 || col === 5) cell.classList.add('border-right');
+    if (row === 2 || row === 5) cell.classList.add('border-bottom');
+
+    if (puzzle[i] !== 0) {
+      cell.classList.add('given');
+      cell.textContent = puzzle[i];
+    } else {
+      cell.classList.add('editable');
+      if (userGrid[i] !== 0) {
+        cell.textContent = userGrid[i];
+        if (checkMode && userGrid[i] !== solved[i]) cell.classList.add('error');
+      }
+    }
+
+    if (i === selected) cell.classList.add('selected');
+    else if (selected !== -1 && userGrid[selected] !== 0 && userGrid[i] === userGrid[selected]) {
+      cell.classList.add('same-num');
+    }
+
+    cell.addEventListener('click', () => {
+      if (puzzle[i] === 0) selected = (selected === i) ? -1 : i;
+      else selected = i;
+      renderGrid();
+    });
+
+    gridEl.appendChild(cell);
+  }
+}
+
+let checkMode = false;
+
+document.getElementById('numpad').addEventListener('click', e => {
+  const btn = e.target.closest('.num-btn');
+  if (!btn || selected === -1 || puzzle[selected] !== 0) return;
+  userGrid[selected] = parseInt(btn.dataset.n);
+  renderGrid();
+  checkWin();
+});
+
+document.getElementById('btn-erase').addEventListener('click', () => {
+  if (selected !== -1 && puzzle[selected] === 0) {
+    userGrid[selected] = 0;
+    renderGrid();
+  }
+});
+
+document.getElementById('btn-check').addEventListener('click', () => {
+  checkMode = !checkMode;
+  document.getElementById('btn-check').textContent = checkMode ? '✓ On' : 'Check';
+  renderGrid();
+});
+
+document.getElementById('btn-hint').addEventListener('click', () => {
+  // Fill a random empty cell with correct value
+  const empties = [];
+  for (let i = 0; i < 81; i++) {
+    if (puzzle[i] === 0 && userGrid[i] !== solved[i]) empties.push(i);
+  }
+  if (empties.length === 0) return;
+  const pick = empties[Math.floor(Math.random() * empties.length)];
+  userGrid[pick] = solved[pick];
+  selected = pick;
+  renderGrid();
+  checkWin();
+});
+
+document.addEventListener('keydown', e => {
+  if (selected === -1 || puzzle[selected] !== 0) return;
+  const n = parseInt(e.key);
+  if (n >= 1 && n <= 9) {
+    userGrid[selected] = n;
+    renderGrid();
+    checkWin();
+  } else if (e.key === 'Backspace' || e.key === 'Delete') {
+    userGrid[selected] = 0;
+    renderGrid();
+  }
+});
+
+function checkWin() {
+  for (let i = 0; i < 81; i++) {
+    if (userGrid[i] !== solved[i]) return;
+  }
+  setTimeout(() => {
+    document.getElementById('daily-complete').classList.add('show');
+    document.getElementById('numpad').style.display = 'none';
+    document.querySelector('.daily-actions').style.display = 'none';
+  }, 300);
+}
+
+renderGrid();
+</script>
+</body>
+</html>
