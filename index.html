@@ -228,12 +228,9 @@
     }
 
     .screenshots-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 16px;
-      justify-content: center;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
     }
 
     .screenshot-item {
@@ -241,12 +238,13 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0;
+      min-width: 0;
     }
 
     .screenshot-item img {
-      width: 160px;
-      border-radius: 22px;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
       display: block;
     }
@@ -258,17 +256,24 @@
     }
 
     @media (max-width: 720px) {
-      .screenshot-item img { width: 130px; }
-      .screenshots-row { gap: 12px; }
+      .screenshots-row {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        margin: 0 -24px;
+        padding: 0 24px 4px;
+        scroll-padding: 0 24px;
+      }
+      .screenshots-row::-webkit-scrollbar { display: none; }
+      .screenshot-item {
+        flex: 0 0 130px;
+        scroll-snap-align: start;
+      }
+      .screenshot-item img { border-radius: 18px; }
     }
-
-    .styles-note {
-      margin-top: 20px;
-      font-size: 14px;
-      color: var(--sub);
-    }
-
-    .styles-note span { color: #FFB800; }
 
     /* ── Daily Challenge ── */
     #daily {
@@ -543,8 +548,8 @@
   <div class="screenshots-row-label">Classic styles</div>
   <div class="screenshots-row">
     <div class="screenshot-item">
-      <img src="screenshot-space.png" alt="Space board style" />
-      <span class="screenshot-name">Space</span>
+      <img src="screenshot-space.png" alt="Starfield board style" />
+      <span class="screenshot-name">Starfield</span>
     </div>
     <div class="screenshot-item">
       <img src="screenshot-chalkboard.png" alt="Chalkboard board style" />
@@ -555,8 +560,16 @@
       <span class="screenshot-name">Notebook</span>
     </div>
     <div class="screenshot-item">
-      <img src="screenshot-retro.png" alt="Retro board style" />
-      <span class="screenshot-name">Retro</span>
+      <img src="screenshot-retro.png" alt="Digital Clock board style" />
+      <span class="screenshot-name">Digital Clock</span>
+    </div>
+    <div class="screenshot-item">
+      <img src="screenshot-arcade.png" alt="Arcade board style" />
+      <span class="screenshot-name">Arcade</span>
+    </div>
+    <div class="screenshot-item">
+      <img src="screenshot-typewriter.png" alt="Typewriter board style" />
+      <span class="screenshot-name">Typewriter</span>
     </div>
   </div>
 
@@ -567,20 +580,26 @@
       <span class="screenshot-name">Jungle</span>
     </div>
     <div class="screenshot-item">
-      <img src="screenshot-ocean.png" alt="Ocean emoji style" />
-      <span class="screenshot-name">Ocean</span>
+      <img src="screenshot-ocean.png" alt="Coral Reef emoji style" />
+      <span class="screenshot-name">Coral Reef</span>
     </div>
     <div class="screenshot-item">
-      <img src="screenshot-fantasy.png" alt="Fantasy emoji style" />
-      <span class="screenshot-name">Fantasy</span>
+      <img src="screenshot-fantasy.png" alt="Fairy Tale emoji style" />
+      <span class="screenshot-name">Fairy Tale</span>
     </div>
     <div class="screenshot-item">
-      <img src="screenshot-cinema.png" alt="Cinema emoji style" />
-      <span class="screenshot-name">Cinema</span>
+      <img src="screenshot-cinema.png" alt="At The Movies emoji style" />
+      <span class="screenshot-name">At The Movies</span>
+    </div>
+    <div class="screenshot-item">
+      <img src="screenshot-pirate.png" alt="Pirate emoji style" />
+      <span class="screenshot-name">Pirate</span>
+    </div>
+    <div class="screenshot-item">
+      <img src="screenshot-new-york.png" alt="New York emoji style" />
+      <span class="screenshot-name">New York</span>
     </div>
   </div>
-
-  <p class="styles-note" style="margin-top: 40px;"><span>✦</span> Premium styles — unlock all with one purchase, no subscription.</p>
 </section>
 
 <!-- FEATURES -->
@@ -609,17 +628,17 @@
       <div class="feature-card">
         <span class="feature-icon">⚡</span>
         <h3>Four Difficulties</h3>
-        <p>Easy, Medium, Hard, and Expert. Each level is thoughtfully tuned for a satisfying solve.</p>
+        <p>Easy, Medium, Hard, and Expert. Each level is thoughtfully tuned to fit your style of gameplay.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">✅</span>
-        <h3>Real-time Hints</h3>
-        <p>Optional mistake highlighting keeps you on track without spoiling the challenge.</p>
+        <span class="feature-icon">📳</span>
+        <h3>Haptics</h3>
+        <p>Subtle taps, buzzes, and animations as you place numbers, so every move feels satisfying.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">📱</span>
-        <h3>iPhone &amp; iPad</h3>
-        <p>Native SwiftUI app, optimised for every screen size. Feels right at home on iOS.</p>
+        <span class="feature-icon">🏆</span>
+        <h3>Achievements</h3>
+        <p>Celebrate your milestones for streaks, fast solves, and perfect puzzles as you work your way through every difficulty.</p>
       </div>
     </div>
   </section>
