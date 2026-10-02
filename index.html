@@ -3,16 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sudoku Odyssey – Classic puzzle, endless styles</title>
-  <meta name="description" content="Sudoku Odyssey brings the classic number puzzle to life with 40+ beautiful board styles. No ads, no subscriptions. Available on iPhone and iPad." />
-  <link rel="icon" type="image/png" href="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2c/31/d9/2c31d98f-3fe1-a840-18ef-c5694d6a9811/AppIcon-0-0-1x_U007epad-0-1-0-GLES2_U002c0-85-220.png/540x540bb.jpg" />
+  <title>Sudoku Odyssey – No Ads | Sudoku for iPhone &amp; iPad</title>
+  <meta name="description" content="Sudoku Odyssey – No Ads: the official site of the iPhone and iPad sudoku app with 40+ board styles, emoji themes and a daily challenge. Free, no ads, no subscriptions." />
+  <link rel="canonical" href="https://sudokuodyssey.com/" />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="apple-itunes-app" content="app-id=6791718361" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Sudoku Odyssey" />
-  <meta property="og:description" content="Classic puzzle, endless styles. 40+ board themes, no ads." />
-  <meta property="og:image" content="https://sudokuodyssey.com/icon.png" />
-  <meta property="og:url" content="https://sudokuodyssey.com" />
+  <meta property="og:site_name" content="Sudoku Odyssey" />
+  <meta property="og:title" content="Sudoku Odyssey – No Ads" />
+  <meta property="og:description" content="Classic sudoku with 40+ board styles. Free on iPhone and iPad, no ads ever." />
+  <meta property="og:image" content="https://sudokuodyssey.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://sudokuodyssey.com/" />
   <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sudoku Odyssey – No Ads" />
+  <meta name="twitter:description" content="Classic sudoku with 40+ board styles. Free on iPhone and iPad, no ads ever." />
+  <meta name="twitter:image" content="https://sudokuodyssey.com/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://sudokuodyssey.com/#website",
+        "name": "Sudoku Odyssey",
+        "alternateName": ["Sudoku Odyssey – No Ads", "Sudoku Odyssey No Ads"],
+        "url": "https://sudokuodyssey.com/"
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://sudokuodyssey.com/#app",
+        "name": "Sudoku Odyssey – No Ads",
+        "alternateName": "Sudoku Odyssey",
+        "description": "Classic sudoku with 40+ hand-crafted board styles, emoji themes, a daily challenge, haptics and achievements. No ads, no subscriptions.",
+        "operatingSystem": "iOS, iPadOS",
+        "applicationCategory": "GameApplication",
+        "applicationSubCategory": "Puzzle",
+        "url": "https://sudokuodyssey.com/",
+        "installUrl": "https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361",
+        "downloadUrl": "https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361",
+        "sameAs": ["https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361"],
+        "image": "https://sudokuodyssey.com/icon.png",
+        "screenshot": [
+          "https://sudokuodyssey.com/screenshot-space.png",
+          "https://sudokuodyssey.com/screenshot-chalkboard.png",
+          "https://sudokuodyssey.com/screenshot-jungle.png",
+          "https://sudokuodyssey.com/screenshot-ocean.png"
+        ],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "publisher": { "@type": "Organization", "name": "Sudoku Odyssey", "url": "https://sudokuodyssey.com/", "email": "sudokuodyssey@gmail.com", "logo": "https://sudokuodyssey.com/icon.png" }
+      }
+    ]
+  }
+  </script>
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -115,8 +166,11 @@
       background: linear-gradient(160deg, #EAF3FF 0%, #F2F2F7 50%, #F2F2F7 100%);
     }
 
+    .hero-title { line-height: 0; }
+
     .hero-logo {
       width: min(420px, 80vw);
+      height: auto;
       margin-bottom: 16px;
     }
 
@@ -484,6 +538,7 @@
 
     footer a { color: rgba(255,255,255,0.6); }
     footer a:hover { color: #fff; }
+    footer p + p { margin-top: 6px; }
 
     .footer-links {
       display: flex;
@@ -527,7 +582,7 @@
     </svg>
   </a>
 
-  <img class="hero-logo" src="logo.png" alt="Sudoku Odyssey" />
+  <h1 class="hero-title"><img class="hero-logo" src="logo.png" alt="Sudoku Odyssey – No Ads" width="2108" height="808" /></h1>
 
   <p class="hero-tagline">Classic puzzle, endless styles.</p>
 
@@ -703,6 +758,7 @@
     <a href="privacy.html">Privacy Policy</a>
     <a href="mailto:sudokuodyssey@gmail.com">Contact</a>
   </div>
+  <p>Sudoku Odyssey – No Ads is available free on the <a href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361">App Store</a> for iPhone and iPad.</p>
   <p>© 2024–2026 Sudoku Odyssey. Made with ♥</p>
 </footer>
 
