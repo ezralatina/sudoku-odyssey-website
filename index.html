@@ -138,6 +138,7 @@
       font-size: 14px;
       font-weight: 500;
       color: var(--sub);
+      white-space: nowrap;
     }
 
     .nav-links a:hover { color: var(--blue); }
@@ -549,8 +550,11 @@
     }
 
     /* ── Responsive ── */
-    @media (max-width: 600px) {
+    @media (max-width: 720px) {
       .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
       .daily-wrapper { padding: 20px 14px; }
     }
   </style>
@@ -565,9 +569,9 @@
       Sudoku Odyssey
     </div>
     <div class="nav-links">
-      <a href="#styles">Styles</a>
+      <a href="#styles">Board Styles</a>
       <a href="#features">Features</a>
-      <a href="#daily">Daily</a>
+      <a href="#daily">Daily Challenge</a>
     </div>
     <a class="nav-cta" href="https://apps.apple.com/us/app/sudoku-odyssey-no-ads/id6791718361" target="_blank" rel="noopener">Download</a>
   </div>
